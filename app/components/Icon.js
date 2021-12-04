@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 import { MaterialCommunityIcons} from '@expo/vector-icons'
-import {Entypo} from '@expo/vector-icons'
 
 function Icon({
     type,

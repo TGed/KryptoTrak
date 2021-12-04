@@ -16,7 +16,7 @@ function LogScreen(props) {
                 {<Entypo 
                     name="credit"
                     color='yellow'
-                    size= '50'
+                    size= {50}
                 />}
                 <Text style={styles.tagline}>KryptoTrak</Text>    
             </View>
