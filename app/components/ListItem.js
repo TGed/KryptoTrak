@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: "row",
         padding: 15,
-        backgroundColor: colors.white
+        backgroundColor: "#5026a3"
     },
     detailsContainer:{
         marginLeft: 10,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         borderRadius: 35,
     },
     subTitle:{
-        color: colors.medium,
+        color: colors.black,
     },
     title:{
         fontWeight: "500",
