@@ -5,10 +5,10 @@ import { Swipeable } from 'react-native-gesture-handler';
 import AppText from './AppText';
 import colors from '../config/colors';
 
-function ListItem({
+function ListCoin({
             title, 
-            subTitle, 
-            image, 
+            price, 
+            value, 
             ImageComponent : IconComponent, 
             onPress, 
             renderRightActions,
@@ -20,12 +20,9 @@ function ListItem({
             onPress={onPress}
             >
                 <View style={styles.container}>
-                    {IconComponent}
-                    {image && <Image style={styles.image} source={image}/>}
-                    <View style={styles.detailsContainer}>
-                        <AppText style={styles.title}>{title}</AppText>
-                        {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
-                    </View>
+                    <AppText style={styles.title}>{title}</AppText>
+                    {price && <AppText style={styles.title}>{price}</AppText>}
+                    {value && <AppText style={styles.title}>{value}</AppText>}
                 </View>
             </TouchableHighlight>
         </Swipeable>
@@ -36,7 +33,8 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: "row",
         padding: 15,
-        backgroundColor: "#5026a3"
+        backgroundColor: "#5026a3",
+        justifyContent: 'space-between'
     },
     detailsContainer:{
         marginLeft: 10,
@@ -55,4 +53,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ListItem;
+export default ListCoin;

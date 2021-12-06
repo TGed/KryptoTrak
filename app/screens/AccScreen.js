@@ -68,7 +68,7 @@ function AccScreen(props) {
 const styles = StyleSheet.create({
     container:{
         marginVertical: 20,
-        backgroundColor: colors.blackss
+        backgroundColor: colors.black
     },
     screen: {
         backgroundColor: "#16023d"
