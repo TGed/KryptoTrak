@@ -9,10 +9,6 @@ import ListItemSeparatorComponent from '../components/ListItemSeparator';
 import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
 
-const CoinGecko = require('coingecko-api');
-const CoinGeckoClient = new CoinGecko();
-
-let data = await CoinGeckoClient.ping();
 
 
 const menuItems = [
