@@ -1,12 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, } from 'react-native';
-import AccScreen from './app/screens/AccScreen';
-import LogScreen from './app/screens/LogScreen';
-import MainScreen from './app/screens/MainScreen';
+import { Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import AppNawigator from './app/navi/AppNawigator';
+import Screen from './app/components/Screen';
+
+
 
 export default function App() {
-  return <AccScreen/>
+  return (
+    <NavigationContainer>
+      <AppNawigator/>
+    </NavigationContainer>
+  ) 
+  
 }
 
 

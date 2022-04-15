@@ -37,9 +37,9 @@ function MainScreen(props) {
             <View style={styles.walletContainer}>
             </View>
             <View style={styles.headers}>
-                <AppText style={styles.text}>Waluta</AppText>
-                <AppText style={styles.text}>Cena</AppText>
-                <AppText style={styles.text}>Wartość</AppText>
+                <AppText style={styles.text}>FAVWaluta</AppText>
+                <AppText style={styles.text}>FAVCena</AppText>
+                <AppText style={styles.text}>FAVWartość</AppText>
             </View>
             <View style={styles.coinContainer}>
                 <FlatList
@@ -55,6 +55,9 @@ function MainScreen(props) {
                         />
                     }
                 />
+            </View>
+            <View style={styles.addButton}>
+            <AppButton title="Dodaj" color="secondary"></AppButton>
             </View>
         </Screen>
     );

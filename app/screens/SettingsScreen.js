@@ -31,7 +31,7 @@ const menuItems = [
     }
 ]
 
-function AccScreen(props) {
+function SettingsScreen(props) {
     return (
         <Screen style={styles.screen}>
             <View style={styles.container}> 
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
         backgroundColor: "#16023d"
     }
 })
-export default AccScreen;
+export default SettingsScreen;
