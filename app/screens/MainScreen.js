@@ -3,10 +3,8 @@ import {View, StyleSheet, FlatList} from 'react-native';
 
 import Screen from '../components/Screen';
 import colors from '../config/colors';
-import Icon from '../components/Icon';
 import ListCoin from '../components/ListCoin';
 import ListItemSeparatorComponent from '../components/ListItemSeparator';
-import AppButton from '../components/AppButton';
 import AppText from '../components/AppText';
 
 
@@ -34,27 +32,19 @@ const menuItems = [
 function MainScreen(props) {
     return (
         <Screen style={styles.screen}>
-            <View style={styles.walletContainer}>
-            </View>
             <View style={styles.headers}>
-                <AppText style={styles.text}>Waluta</AppText>
+            <AppText style={styles.text}>Nazwa</AppText>
                 <AppText style={styles.text}>Cena</AppText>
                 <AppText style={styles.text}>Wartość</AppText>
             </View>
-            <View style={styles.coinContainer}>
-                <FlatList
-                    data={menuItems}
-                    keyExtractor = {menuItem => menuItem.title}
-                    ItemSeparatorComponent={ListItemSeparatorComponent}
-                    renderItem={({item}) => 
-                        <ListCoin
-                            title={item.title}
-                            price={item.price}
-                            value={item.value}
-                            
-                        />
-                    }
-                />
+            <View style={styles.text}>
+                <View style={styles.text}>
+                    <AppText>Obraz</AppText>
+                    <View style={styles.text}>
+                        <AppText>nazwa</AppText>
+                        <AppText>symbol</AppText>
+                    </View>
+                </View>
             </View>
         </Screen>
     );
@@ -65,8 +55,11 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     coinContainer:{
-        marginVertical: 20,
-        backgroundColor: colors.blackss
+        backgroundColor: colors.black,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingTop: 10,
+        
     },
     walletContainer:{
         backgroundColor:"#4d078a",

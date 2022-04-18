@@ -1,21 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
+import React, {useEffect, useState} from 'react';
+import { StyleSheet,View } from 'react-native';
 import AppNawigator from './app/navi/AppNawigator';
-import Screen from './app/components/Screen';
-
-
+import AppText from './app/components/AppText'
+import MainScreen from './app/screens/MainScreen';
+import RegisterScreen from './app/screens/RegisterScreen'
+import LoginScreen from './app/screens/LoginScreen';
 
 export default function App() {
+
+
+
   return (
-    <NavigationContainer>
-      <AppNawigator/>
-    </NavigationContainer>
+    <LoginScreen/>
   ) 
   
 }
 
 
+const styles = StyleSheet.create({
+  container: {
+    alignSelf: 'center',
+    margin: 100,
+  }
+})

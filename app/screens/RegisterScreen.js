@@ -5,27 +5,14 @@ import {Entypo} from '@expo/vector-icons'
 import colors from '../config/colors'
 import AppButton from '../components/AppButton'
 
-function LogScreen(props) {
+function RegisterScreen(props) {
     return (
         <ImageBackground
             blurRadius={3}
             style={styles.background}
             source={require("../assets/background.png")}
             >
-            <View style={styles.logoContainer}>
-                {<Entypo 
-                    name="credit"
-                    color='yellow'
-                    size= {50}
-                />}
-                <Text style={styles.tagline}>KryptoTrak</Text>    
-            </View>
-            <View style={styles.buttonContainer}>
-                <AppButton title="Loguj"/>
-                <AppButton title="Zarejestruj" color="secondary"/>
-            </View>
-        
-        
+          
         </ImageBackground>
     );
 }
@@ -53,4 +40,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default LogScreen;
+export default RegisterScreen;
