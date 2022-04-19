@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View, ImageBackground, StyleSheet } from 'react-native';
 import {Entypo} from '@expo/vector-icons'
+import constants from 'expo-constants';
 
 import colors from '../config/colors'
 import AppButton from '../components/AppButton'
@@ -22,11 +23,12 @@ function LoginScreen(props) {
                 />}
                 <Text style={styles.tagline}>KryptoTrak</Text>    
             </View>
-            <View>
-                <AppTextInput placeholder="email" icon="account"/>
-                <AppTextInput placeholder="password" icon="lock" secureTextEntry/>
-            </View>
             <View style={styles.buttonContainer}>
+                <AppTextInput 
+                    placeholder="email" 
+                    icon="account"
+                    />
+                <AppTextInput placeholder="password" icon="lock" secureTextEntry/>
                 <AppButton title="Loguj"/>
                 <AppButton title="Zarejestruj" color="secondary"/>
             </View>
@@ -42,17 +44,15 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    credentialsContainer:{
-
-    },
     buttonContainer: {
-        padding: 20,
+        padding: 10,
         width: "100%",
+        marginBottom: 50
     },
     logoContainer:{
         position: 'absolute',
-        top: 70,
-        alignItems: 'center'
+        top: constants.statusBarHeight,
+        alignItems: 'center',
     },
     tagline:{
         fontSize: 25,
