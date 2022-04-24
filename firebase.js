@@ -1,5 +1,12 @@
 // Import the functions you need from the SDKs you need
-import * from "firebase/app";
+import { initializeApp } from "firebase/app";
+import { 
+  getAuth, 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  GoogleAuthProvider } 
+  from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12,17 +19,20 @@ const firebaseConfig = {
   storageBucket: "kryptotrak-615a7.appspot.com",
   messagingSenderId: "762469958707",
   appId: "1:762469958707:web:729bd0ed1facac5f3bcf46",
-  measurementId: "G-437WE52GNY"
+  measurementId: "G-437WE52GNY",
 };
 
 // Initialize Firebase
-let app;
-if (firebaseConfig.appId.length === 0) {
-    app = initializeApp(firebaseConfig);
-} else {
-    app = firebase.app()
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+
+export function logIn(email, password) {
+  return signInWithEmailAndPassword(auth,email,password);
 }
 
-const aut = firebase.auth()
+export function signUp(email,password) {
+  return createUserWithEmailAndPassword(auth,email,password);
+}
 
-export {auth};
+export const googleAuth = new GoogleAuthProvider();

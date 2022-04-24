@@ -1,13 +1,9 @@
-import React from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet} from 'react-native';
 
 import Screen from '../components/Screen';
 import colors from '../config/colors';
-import ListCoin from '../components/ListCoin';
-import ListItemSeparatorComponent from '../components/ListItemSeparator';
 import AppText from '../components/AppText';
-
-
 
 const menuItems = [
     {
@@ -30,6 +26,22 @@ const menuItems = [
 ]
 
 function MainScreen(props) {
+    const [coins, setCoins] = useState([]);
+
+    const loadData = async () => {
+        const res =  await fetch(
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+        );
+        const data = await res.json();
+        setCoins(data);
+    }
+
+    useEffect(() => {
+        loadData();
+    },[]);
+
+    console.log(coins);
+
     return (
         <Screen style={styles.screen}>
             <View style={styles.headers}>

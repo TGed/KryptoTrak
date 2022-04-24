@@ -1,14 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View, ImageBackground, StyleSheet } from 'react-native';
 import {Entypo} from '@expo/vector-icons'
 import constants from 'expo-constants';
+import * as Yup from 'yup';
 
-import colors from '../config/colors'
+import {auth, logIn} from '../../firebase';
+
 import AppButton from '../components/AppButton'
-import AppText from '../components/AppText';
-import AppTextInput from '../components/AppTextInput';
+import {AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components/forms';
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string().required().email().label("Email"),
+    password: Yup.string().required().min(8).label("Password"),
+});
 
 function LoginScreen(props) {
+    const [loginFailed, setLoginFailed] = useState(false);
+
+    const handleSubmit = async ({email, password}) => {
+        auth
+        .signInWithEmailAndPassword(auth, email, password)
+        .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log('Zalogowany:', user.email);
+        })
+        .catch(error => alert(error.message))
+    }
+
+    const handleSubmit1 = ({email,password}) => {
+        logIn(email,password);
+    }
+
     return (
         <ImageBackground
             blurRadius={3}
@@ -23,17 +45,37 @@ function LoginScreen(props) {
                 />}
                 <Text style={styles.tagline}>KryptoTrak</Text>    
             </View>
-            <View style={styles.buttonContainer}>
-                <AppTextInput 
-                    placeholder="email" 
-                    icon="account"
+            <View style={styles.formContainer}>
+                <AppForm
+                    initialValues={{email:"", password: "" }}
+                    onSubmit={handleSubmit1}
+                    validationSchema={validationSchema}
+                >
+                    <ErrorMessage
+                        error="Niepoprawny email i/lub hasło."
+                        //visible={loginFailed}
                     />
-                <AppTextInput placeholder="password" icon="lock" secureTextEntry/>
-                <AppButton title="Loguj"/>
-                <AppButton title="Zarejestruj" color="secondary"/>
+                    <AppFormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="email"
+                        keyboardType="email-address"
+                        name="email"
+                        placeholder="Email"
+                    />
+                    <AppFormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="lock"
+                        name="password"
+                        placeholder="Password"
+                        secureTextEntry
+                        textContentType="password"
+                    />
+                    <SubmitButton title="Login" color='secondary'/>
+                </AppForm>
+                <AppButton title="Zarejestruj"/>
             </View>
-        
-        
         </ImageBackground>
     );
 }
@@ -44,7 +86,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    buttonContainer: {
+    formContainer: {
         padding: 10,
         width: "100%",
         marginBottom: 50
