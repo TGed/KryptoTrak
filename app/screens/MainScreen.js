@@ -1,36 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 
 import Screen from '../components/Screen';
 import colors from '../config/colors';
 import AppText from '../components/AppText';
-
-const menuItems = [
-    {
-        title: "Ethereum",
-        price: "4000",
-        value: "2200",
-    },
-    {
-        title: "Bitcoin",
-        price: "47450",
-        value: "10000",
-        
-    },
-    {
-        title: "Binance Coin",
-        price: "430",
-        value: "1200",
-        
-    }
-]
+import ListItem from '../components/ListItem';
+import CoinItem from '../components/CoinItem';
 
 function MainScreen(props) {
     const [coins, setCoins] = useState([]);
+    const [refreshing, setRefreshing] = useState(false);
+    const [search, setSearch] = useState("");
 
     const loadData = async () => {
         const res =  await fetch(
-            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=1000&page=1&sparkline=false"
         );
         const data = await res.json();
         setCoins(data);
@@ -46,18 +30,23 @@ function MainScreen(props) {
         <Screen style={styles.screen}>
             <View style={styles.headers}>
             <AppText style={styles.text}>Nazwa</AppText>
-                <AppText style={styles.text}>Cena</AppText>
-                <AppText style={styles.text}>Wartość</AppText>
+            <AppText style={styles.text}>Cena</AppText>
             </View>
-            <View style={styles.text}>
-                <View style={styles.text}>
-                    <AppText>Obraz</AppText>
-                    <View style={styles.text}>
-                        <AppText>nazwa</AppText>
-                        <AppText>symbol</AppText>
-                    </View>
-                </View>
-            </View>
+            <FlatList
+                data={coins.filter(
+                    (coin) =>
+                        coin.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
+                        coin.symbol.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+                )}
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item }) => <CoinItem coin={item}/>}
+                refreshing={refreshing}
+                onRefresh={async () => {
+                    setRefreshing(true);
+                    await loadData();
+                    setRefreshing(false);
+                }}
+            />
         </Screen>
     );
 }
@@ -91,7 +80,7 @@ const styles = StyleSheet.create({
 
     },
     screen:{
-        backgroundColor: "#16023d",
+        backgroundColor: "#121212",
         flex: 1,
     },
     text: {

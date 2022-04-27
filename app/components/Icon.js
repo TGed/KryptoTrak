@@ -7,7 +7,8 @@ function Icon({
     name,
     size = 40,
     backgroundColor = "#000",
-    iconColor = "#fff"
+    iconColor = "#fff",
+    ...otherProps
 }) {
     return (
         <View style={{
@@ -17,6 +18,7 @@ function Icon({
             backgroundColor,
             justifyContent: 'center',
             alignItems: 'center',
+            ...otherProps
         }}>
             {<MaterialCommunityIcons 
                 name={name} 

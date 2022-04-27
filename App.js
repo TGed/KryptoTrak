@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet,View } from 'react-native';
-import AppNawigator from './app/navi/AppNawigator';
-import AppText from './app/components/AppText'
 import MainScreen from './app/screens/MainScreen';
-import RegisterScreen from './app/screens/RegisterScreen'
-import LoginScreen from './app/screens/LoginScreen';
+import AppNawigator from './app/navi/AppNawigator'
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
 
 
 
   return (
-    <MainScreen/>
+    <NavigationContainer>
+      <AppNawigator/>
+    </NavigationContainer>
   ) 
   
 }
