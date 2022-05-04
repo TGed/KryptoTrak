@@ -4,13 +4,16 @@ import MainScreen from './app/screens/MainScreen';
 import AppNawigator from './app/navi/AppNawigator'
 import { NavigationContainer } from '@react-navigation/native';
 
+import LoginScreen from './app/screens/LoginScreen';
+import LogNawigator from './app/navi/LogNawigator';
+
 export default function App() {
 
 
 
   return (
     <NavigationContainer>
-      <AppNawigator/>
+      <LogNawigator />
     </NavigationContainer>
   ) 
   

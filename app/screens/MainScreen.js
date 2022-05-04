@@ -4,7 +4,6 @@ import {View, StyleSheet, FlatList} from 'react-native';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
 import AppText from '../components/AppText';
-import ListItem from '../components/ListItem';
 import CoinItem from '../components/CoinItem';
 
 function MainScreen(props) {

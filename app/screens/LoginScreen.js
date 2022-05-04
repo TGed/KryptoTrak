@@ -6,7 +6,8 @@ import * as Yup from 'yup';
 
 import {auth, logIn} from '../../firebase';
 
-import AppButton from '../components/AppButton'
+import routes from '../navi/routes';
+import AppButton from '../components/AppButton';
 import {AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components/forms';
 
 const validationSchema = Yup.object().shape({
@@ -14,7 +15,8 @@ const validationSchema = Yup.object().shape({
     password: Yup.string().required().min(8).label("Password"),
 });
 
-function LoginScreen(props) {
+
+function LoginScreen({ navigation }) {
     const [loginFailed, setLoginFailed] = useState(false);
 
     const handleSubmit = async ({email, password}) => {
@@ -74,7 +76,10 @@ function LoginScreen(props) {
                     />
                     <SubmitButton title="Login" color='secondary'/>
                 </AppForm>
-                <AppButton title="Zarejestruj"/>
+                <AppButton 
+                    title="Zarejestruj"
+                    onPress={() => navigation.navigate(routes.REGISTER)}
+                />
             </View>
         </ImageBackground>
     );
