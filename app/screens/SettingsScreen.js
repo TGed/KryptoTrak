@@ -6,6 +6,8 @@ import Screen from '../components/Screen';
 import colors from '../config/colors';
 import Icon from '../components/Icon';
 import ListItemSeparatorComponent from '../components/ListItemSeparator';
+import { auth } from '../../firebase';
+import { signOut } from 'firebase/auth';
 
 const menuItems = [
     {
@@ -31,12 +33,19 @@ const menuItems = [
     }
 ]
 
+
+
 function SettingsScreen(props) {
+
+    const handleLogOut = () => {
+        signOut(auth);
+    }
+
     return (
         <Screen style={styles.screen}>
             <View style={styles.container}> 
                 <ListItem
-                    title="Moje imie"
+                    title="Imie"
                     subTitle="costam@gmail.com"
                 />
             </View>
@@ -58,8 +67,10 @@ function SettingsScreen(props) {
             </View>
             <ListItem
                 title="Wyloguj"
-                ImageComponent={ <Icon name="logout" backgroundColor="#ffe66d"/> 
+                ImageComponent={ <Icon name="logout" backgroundColor="#ffe66d"
+                /> 
                 }
+                onPress={handleLogOut}
             />
         </Screen>
     );

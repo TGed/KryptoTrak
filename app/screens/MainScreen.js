@@ -23,7 +23,7 @@ function MainScreen(props) {
         loadData();
     },[]);
 
-    console.log(coins);
+    // console.log(coins);
 
     return (
         <Screen style={styles.screen}>

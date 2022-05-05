@@ -1,28 +1,23 @@
-import React, {useEffect, useState} from 'react';
-import { StyleSheet,View } from 'react-native';
-import MainScreen from './app/screens/MainScreen';
-import AppNawigator from './app/navi/AppNawigator'
-import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import OfflineInfo from './app/components/OfflineInfo'
 
-import LoginScreen from './app/screens/LoginScreen';
-import LogNawigator from './app/navi/LogNawigator';
+
+import { AuthUserProvider } from './app/auth/AuthUserProvider';
+import RootNawigator from './app/navi/RootNavigator'
 
 export default function App() {
 
-
-
   return (
-    <NavigationContainer>
-      <LogNawigator />
-    </NavigationContainer>
+    <AuthUserProvider>
+      <SafeAreaProvider>
+        <OfflineInfo/>
+        <RootNawigator/>
+      </SafeAreaProvider>
+    </AuthUserProvider>
+
   ) 
   
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'center',
-    margin: 100,
-  }
-})

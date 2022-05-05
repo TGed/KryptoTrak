@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native'
-import { Constants } from 'expo-constants';
-import { useNetInfo } from "@react-native-community/neinfo"
-import colors from '../config/colors';
-import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import { View, StyleSheet, Text } from 'react-native'
+import constants from 'expo-constants';
+import { useNetInfo } from "@react-native-community/netinfo"
 
-function OfflineInfo(props) {
+import colors from '../config/colors';
+
+function OfflineInfo() {
     const netInfo = useNetInfo();
 
     if (netInfo.type !== "unknown" && netInfo.isInternetReachable === false)
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
        height: 50,
        justifyContent: "center",
        position: "absolute",
-       top: Constants.statusBarHeight,
+       top: constants.statusBarHeight,
        width: "100%",
        zIndex: 1,
 
