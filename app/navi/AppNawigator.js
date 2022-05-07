@@ -1,12 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons} from '@expo/vector-icons'
 
-import MainScreen from '../screens/MainScreen';
+import MainNavigator from './MainNavigator';
 import SettingsScreen from '../screens/SettingsScreen';
 import FavScreen from '../screens/FavScreen';
+import ChartScreen from '../screens/ChartScreen';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const AppNawigator = () => {
    return (
@@ -22,7 +25,7 @@ const AppNawigator = () => {
         >
                 <Tab.Screen 
                     name="Główna"
-                    component={MainScreen}
+                    component={MainNavigator}
                     options= {{
                         tabBarIcon: ({color,size}) => (
                             <MaterialCommunityIcons 
@@ -59,8 +62,10 @@ const AppNawigator = () => {
                         )
                     }}
                 />
-
        </Tab.Navigator>
+
+                    
+
    );
 };
 

@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View, ImageBackground, StyleSheet } from 'react-native';
 import {Entypo} from '@expo/vector-icons'
 import constants from 'expo-constants';
 import * as Yup from 'yup';
 
-import {auth, logIn} from '../../firebase';
+import {logIn} from '../../firebase';
 
 import routes from '../navi/routes';
 import AppButton from '../components/AppButton';
@@ -69,7 +69,7 @@ function LoginScreen({ navigation }) {
                 </AppForm>
                 <AppButton 
                     title="Zarejestruj"
-                    onPress={() => navigation.navigate(routes.REGISTER)}
+                    onPress={() => navigation.navigate(routes.FAVS)}
                 />
             </View>
         </ImageBackground>

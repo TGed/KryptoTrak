@@ -5,7 +5,7 @@ import ChartScreen from '../screens/ChartScreen';
 
 const Stack = createStackNavigator();
 
-const FavScreen = () => (
+const MainNavigator = () => (
     <Stack.Navigator>
         <Stack.Screen
             name="MainScreen"
@@ -18,10 +18,10 @@ const FavScreen = () => (
             options={{
                 headerBackTitleVisible:false,
                 headerTransparent:true,
-                headerTitle:" s",
+                headerTitle:"",
             }}
         />
     </Stack.Navigator>
 )
 
-export default FavScreen;
+export default MainNavigator;

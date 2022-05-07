@@ -7,7 +7,8 @@ import { AuthUserProviderContext } from '../auth/AuthUserProvider';
 import AppNawigator from './AppNawigator';
 import LogNawigator from './LogNawigator';
 
-export default function App() {
+export default function RootNavigator() {
+  
   const {user, setUser } = useContext(AuthUserProviderContext);
 
   useEffect(() => {

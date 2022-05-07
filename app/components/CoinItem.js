@@ -1,42 +1,54 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableHighlight } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+import routes from "../navi/routes";
 import Icon from "./Icon";
 import ListItemSeparator from "./ListItemSeparator";
 
-const CoinItem = ({ coin }) => (
+function CoinItem ({ coin }) {
+const navigation = useNavigation();
+
+return (
 <>
-<View style={styles.containerItem}>
-    <View style={styles.coinName}>
-        <Text style={styles.marketRank}>{coin.market_cap_rank}</Text>
-        <Image source={{ uri: coin.image }} style={styles.image} />
-        <View style={styles.containerNames}>
-            <Text style={styles.text}>{coin.name}</Text>
-            <Text style={styles.textSymbol}>{coin.symbol}</Text>
-        </View>
-        </View>
-    <View style={styles.coinName}>
-        <View>   
-            <Text style={styles.textPrice}>${coin.current_price}</Text>
-            <Text
-                style={[
-                styles.pricePercentage,
-                coin.price_change_percentage_24h > 0
-                    ? styles.priceUp
-                    : styles.priceDown,
-                ]}
-            >
-                {coin.price_change_percentage_24h.toFixed(2)}%
-            </Text>
-        </View>
-        <View style={styles.favIcon} >
-        <Icon name="star"/> 
+  <TouchableHighlight onPress={() => navigation.navigate(routes.CHARTS, coin.id)}>
+    <View style={styles.containerItem}>
+        <View style={styles.coinName}>
+            <Text style={styles.marketRank}>{coin.market_cap_rank}</Text>
+            <Image source={{ uri: coin.image }} style={styles.image} />
+            <View style={styles.containerNames}>
+                <Text style={styles.text}>{coin.name}</Text>
+                <Text style={styles.textSymbol}>{coin.symbol}</Text>
+            </View>
+            </View>
+        <View style={styles.coinName}>
+            <View>   
+                <Text style={styles.textPrice}>${coin.current_price}</Text>
+                <Text
+                    style={[
+                    styles.pricePercentage,
+                    coin.price_change_percentage_24h > 0
+                        ? styles.priceUp
+                        : styles.priceDown,
+                    ]}
+                >
+                    {coin.price_change_percentage_24h.toFixed(2)}%
+                </Text>
+            </View>
+            <View style={styles.isFavIcon} >
+            <Icon 
+              name="star"
+              onPress={()=>(console.log(coin.name))}
+            /> 
+            </View>
         </View>
     </View>
-</View>
-<ListItemSeparator/>
+  </TouchableHighlight>
+  <ListItemSeparator/>
 </>
 
-);
+
+)};
 
 const styles = StyleSheet.create({
   containerItem: {
@@ -77,8 +89,12 @@ const styles = StyleSheet.create({
   priceDown: {
     color: "#fc4422",
   },
-  favIcon: {
+  isFavIcon: {
     marginLeft:10,
+    borderRadius:5
+  },
+  isNotFavIcon:{
+
   },
   image: {
     width: 30,
