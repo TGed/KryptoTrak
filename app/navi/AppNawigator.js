@@ -10,49 +10,55 @@ const Tab = createBottomTabNavigator();
 
 const AppNawigator = () => {
    return (
-       <Tab.Navigator screenOptions={{headerShown:false}}>
-            <Tab.Screen 
-                name="Główna"
-                component={MainScreen}
-                options= {{
-                    tabBarIcon: ({color,size}) => (
-                        <MaterialCommunityIcons 
-                            name="home"
-                            color={color}
-                            size={size}
-                        />
-                    )
-
-                }}
-            />
-            <Tab.Screen
-                name="Ulubione"
-                component={FavScreen}
-                options= {{
-                    tabBarIcon: ({color,size}) => (
-                        <MaterialCommunityIcons 
-                            name="star"
-                            color={color}
-                            size={size}
-                        />
-                    )
-
-                }}
-            />
-            <Tab.Screen
-                name="Ustawienia"
-                component={SettingsScreen}
-                options= {{
-                    tabBarIcon: ({color,size}) => (
-                        <MaterialCommunityIcons 
-                            name="account"
-                            color={color}
-                            size={size}
-                        />
-                    )
-
-                }}
-            />
+       <Tab.Navigator
+            screenOptions={{
+                tabBarStyle:{
+                    backgroundColor: "#121212"
+                },
+                headerShown:false,
+                tabBarInactiveBackgroundColor:"#121212",
+                tabBarActiveBackgroundColor:"#121212"
+            }}
+        >
+                <Tab.Screen 
+                    name="Główna"
+                    component={MainScreen}
+                    options= {{
+                        tabBarIcon: ({color,size}) => (
+                            <MaterialCommunityIcons 
+                                name="home"
+                                color={color}
+                                size={size}
+                            />
+                        )
+                    }}
+                />
+                <Tab.Screen
+                    name="Ulubione"
+                    component={FavScreen}
+                    options= {{
+                        tabBarIcon: ({color,size}) => (
+                            <MaterialCommunityIcons 
+                                name="star"
+                                color={color}
+                                size={size}
+                            />
+                        )
+                    }}
+                />
+                <Tab.Screen
+                    name="Ustawienia"
+                    component={SettingsScreen}
+                    options= {{
+                        tabBarIcon: ({color,size}) => (
+                            <MaterialCommunityIcons 
+                                name="account"
+                                color={color}
+                                size={size}
+                            />
+                        )
+                    }}
+                />
 
        </Tab.Navigator>
    );

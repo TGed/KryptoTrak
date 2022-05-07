@@ -3,7 +3,7 @@ import {View, StyleSheet, FlatList} from 'react-native';
 
 import Screen from '../components/Screen';
 import colors from '../config/colors';
-import AppText from '../components/AppText';
+import AppTextInput from '../components/AppTextInput';
 import CoinItem from '../components/CoinItem';
 
 function MainScreen(props) {
@@ -27,10 +27,16 @@ function MainScreen(props) {
 
     return (
         <Screen style={styles.screen}>
-            <View style={styles.headers}>
-            <AppText style={styles.text}>Nazwa</AppText>
-            <AppText style={styles.text}>Cena</AppText>
-            </View>
+            <AppTextInput
+                autoCapitalize="none"
+                icon="magnify" 
+                style={styles.searchCoin}
+                backgroundColor="#121212"
+                autoCorrect={false}
+                placeholder= "Wyszukaj kryptowalutę"
+                onChangeText={(text) => text && setSearch(text)}
+            />
+
             <FlatList
                 data={coins.filter(
                     (coin) =>
@@ -69,12 +75,16 @@ const styles = StyleSheet.create({
         borderRadius: 35,
         marginBottom: 20,
     },
-    coinContainer:{
-
+    searchCoin:{
+        width:"80%",
+        textAlign:"center",
+        color:colors.light,
     },
     headers:{
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
+        marginLeft:65,
+        marginRight:70,
         fontWeight: "600",
 
     },

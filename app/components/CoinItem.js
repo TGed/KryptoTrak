@@ -28,8 +28,8 @@ const CoinItem = ({ coin }) => (
                 {coin.price_change_percentage_24h.toFixed(2)}%
             </Text>
         </View>
-        <View style={styles.icon} >
-        <Icon name="star" style={styles.icon}/> 
+        <View style={styles.favIcon} >
+        <Icon name="star"/> 
         </View>
     </View>
 </View>
@@ -41,9 +41,12 @@ const CoinItem = ({ coin }) => (
 const styles = StyleSheet.create({
   containerItem: {
     backgroundColor: "#121212",
-    paddingTop: 10,
+    paddingTop: 5,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignContent:"center",
+    alignItems:"center",
+    paddingBottom:5,
   },
   containerNames: {
     marginLeft: 10,
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     alignItems: "center",
     fontSize: 25,
-    marginRight:5,
+    marginRight:15,
     marginLeft: 2,
   },
   pricePercentage: {
@@ -74,8 +77,8 @@ const styles = StyleSheet.create({
   priceDown: {
     color: "#fc4422",
   },
-  icon: {
-    margin:1,
+  favIcon: {
+    marginLeft:10,
   },
   image: {
     width: 30,
