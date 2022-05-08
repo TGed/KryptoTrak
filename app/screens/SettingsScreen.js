@@ -10,13 +10,13 @@ import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
 
 const menuItems = [
-    {
-        title: "Moje ustawienia",
-        icon: {
-            name: "format-list-bulleted", 
-            backgroundColor : colors.secondary
-        }
-    },
+    // {
+    //     title: "Moje ustawienia",
+    //     icon: {
+    //         name: "format-list-bulleted", 
+    //         backgroundColor : colors.secondary
+    //     }
+    // },
     {
         title: "Typ Waluty",
         icon: {
@@ -79,10 +79,9 @@ function SettingsScreen(props) {
 const styles = StyleSheet.create({
     container:{
         marginVertical: 20,
-        backgroundColor: colors.black
     },
     screen: {
-        backgroundColor: "#16023d"
+        backgroundColor: "#121212"
     }
 })
 export default SettingsScreen;
