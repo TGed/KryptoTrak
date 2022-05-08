@@ -18,7 +18,11 @@ const MainNavigator = () => (
             options={{
                 headerBackTitleVisible:false,
                 headerTransparent:true,
-                headerTitle:"",
+                title:"",
+                headerTitleStyle : {
+                    color:"white"
+                }
+                
             }}
         />
     </Stack.Navigator>

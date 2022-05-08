@@ -11,7 +11,7 @@ const navigation = useNavigation();
 
 return (
 <>
-  <TouchableHighlight onPress={() => navigation.navigate(routes.CHARTS, coin.id)}>
+  <TouchableHighlight onPress={() => navigation.navigate(routes.CHARTS, {coin})}>
     <View style={styles.containerItem}>
         <View style={styles.coinName}>
             <Text style={styles.marketRank}>{coin.market_cap_rank}</Text>

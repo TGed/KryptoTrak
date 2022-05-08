@@ -24,7 +24,7 @@ const AppNawigator = () => {
             }}
         >
                 <Tab.Screen 
-                    name="Główna"
+                    name="Home"
                     component={MainNavigator}
                     options= {{
                         tabBarIcon: ({color,size}) => (
@@ -37,7 +37,7 @@ const AppNawigator = () => {
                     }}
                 />
                 <Tab.Screen
-                    name="Ulubione"
+                    name="Favorites"
                     component={FavScreen}
                     options= {{
                         tabBarIcon: ({color,size}) => (
@@ -50,7 +50,7 @@ const AppNawigator = () => {
                     }}
                 />
                 <Tab.Screen
-                    name="Ustawienia"
+                    name="Settings"
                     component={SettingsScreen}
                     options= {{
                         tabBarIcon: ({color,size}) => (

@@ -7,6 +7,7 @@ import Screen from '../components/Screen';
 import colors from '../config/colors';
 import AppTextInput from '../components/AppTextInput';
 import CoinItem from '../components/CoinItem';
+import AppButton from '../components/AppButton';
 
 function MainScreen({navigation}) {
     const [coins, setCoins] = useState([]);
@@ -35,7 +36,7 @@ function MainScreen({navigation}) {
                 style={styles.searchCoin}
                 backgroundColor="#121212"
                 autoCorrect={false}
-                placeholder= "Wyszukaj kryptowalutę"
+                placeholder= "Search cryptocurrency"
                 onChangeText={(text) => setSearch(text)}
             />
 
@@ -58,6 +59,14 @@ function MainScreen({navigation}) {
                 }}
                 
             />
+            <View style={styles.buttonsContainer}>
+                <View style={styles.previousButton}>
+                    <AppButton title="Previous"/>
+                </View>
+                <View style={styles.nextButton}>
+                    <AppButton title="next"/>
+                </View>
+            </View>
         </Screen>
     );
 }
@@ -72,6 +81,15 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         paddingTop: 10,
         
+    },
+    buttonsContainer:{
+        flexDirection:"row",
+    },
+    previousButton:{
+        width:"50%",
+    },
+    nextButton:{
+        width:"50%"
     },
     walletContainer:{
         backgroundColor:"#4d078a",
