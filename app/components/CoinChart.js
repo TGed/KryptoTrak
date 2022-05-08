@@ -17,10 +17,31 @@ function CoinChart({coinId, selectedTimeFrame}) {
             return 'vs_currency=usd&days=30&interval=daily';
       }
    };
+   
+   const loadData = async () => {
+     const res =  await fetch(
+           "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids="+coinId+"&order=market_cap_desc&per_page=1&page=1&sparkline=false"
+      );
+      const data = await res.json();
+      return(data);
+    }
 
    const renderChart = () => {
-      <YAxis
-      />
+      return (
+         <>
+            <Yaxis
+            />
+            <View>
+               <AreaChart>
+                  <Grid/>
+                  <Line/>
+                  <Gradient/>
+               </AreaChart>
+               <XAxis
+               />
+            </View>
+         </>
+      )
    }
 
 
