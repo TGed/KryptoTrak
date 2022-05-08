@@ -18,7 +18,6 @@ const MainNavigator = () => (
             options={{
                 headerBackTitleVisible:false,
                 headerTransparent:true,
-                title:"",
                 headerTitleStyle : {
                     color:"white"
                 }

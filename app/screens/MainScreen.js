@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 
-import routes from '../navi/routes'
-import FavScreen from './FavScreen';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
 import AppTextInput from '../components/AppTextInput';

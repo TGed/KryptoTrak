@@ -7,6 +7,7 @@ import colors from '../config/colors';
 import ValueFormat from '../components/ValueFormat';
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
+import CoinChart from '../components/CoinChart';
 
 
 function ChartScreen({route,navigation}) {
@@ -32,13 +33,10 @@ function ChartScreen({route,navigation}) {
     // useEffect(() => {
     //     loadData();
     // },[]);
-    console.log(coin)
 
     return (
         <Screen style={styles.screen}>
-            <View style={styles.chartContainer}>
-
-            </View>
+            <CoinChart coinId={coin.id} curPrice={coin.current_price}/>
             <View style={styles.statsContainer}>
                 <View styles={styles.nestedStatsContainer}>
                     <AppText style={styles.text}>Current Price : {"\n"} $ {ValueFormat(coin.current_price)}</AppText>
