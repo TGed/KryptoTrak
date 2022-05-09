@@ -7,24 +7,39 @@ import AppTextInput from '../components/AppTextInput';
 import CoinItem from '../components/CoinItem';
 import AppButton from '../components/AppButton';
 
-function MainScreen({navigation}) {
+function MainScreen({}) {
     const [coins, setCoins] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
     const [search, setSearch] = useState("");
+    var [page, setPage] = useState(1);
 
     const loadData = async () => {
         const res =  await fetch(
-            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page="+page+"&sparkline=false"
         );
         const data = await res.json();
         setCoins(data);
     }
 
+    const handleIncrement = () => {
+        setPage(page+1)
+        console.log(page)
+    }
+
+    const handleDecrement = () => {
+        if (page > 0) {
+            setPage(page-1); 
+            console.log(page)
+        }
+        
+    }
+
+
 
     useEffect(() => {
         loadData();
     },[]);
-    // console.log(coins);
+
     return (
         <Screen style={styles.screen}>
             <AppTextInput
@@ -54,14 +69,30 @@ function MainScreen({navigation}) {
                     await loadData();
                     setRefreshing(false);
                 }}
-                
+                extraData={coins}
             />
             <View style={styles.buttonsContainer}>
                 <View style={styles.previousButton}>
-                    <AppButton title="Previous"/>
+                    {page <= 1 
+                        ?   <AppButton 
+                                title="Previous" 
+                                color='5c5b5b' 
+                                textColor='7a7979'
+                                disabled='true'
+                            />
+                        :   <AppButton
+                                title="Previous" 
+                                color='5c5b5b'
+                                onPress={handleDecrement} 
+                            />
+                    }
                 </View>
                 <View style={styles.nextButton}>
-                    <AppButton title="next"/>
+                    <AppButton 
+                        title="next"  
+                        color='5c5b5b'
+                        onPress={handleIncrement}
+                    />
                 </View>
             </View>
         </Screen>

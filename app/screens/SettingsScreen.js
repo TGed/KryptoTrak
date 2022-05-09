@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Alert} from 'react-native';
+import { View, StyleSheet, Alert, Modal} from 'react-native';
 
 import ListItem from '../components/ListItem';
 import Screen from '../components/Screen';
@@ -49,6 +49,30 @@ function SettingsScreen(props) {
         signOut(auth);
     }
 
+    const deleteAccount = () => {
+        return (
+            <Modal
+              animationType="slide"
+              transparent={true}
+              onBackdropPress={() => console.log('Pressed')}
+              visible={props.modalVisible}
+              >
+              <View
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  right: 0,
+                  backgroundColor: '#4D4D4D',
+                  width: (500),
+                  height: (500)
+                }}>
+                
+          
+              </View>
+            </Modal>
+          );
+    }
+
     const handleDelete = () => {
         Alert.alert(
             "Deleting Account",
@@ -72,7 +96,7 @@ function SettingsScreen(props) {
             
             <View style={styles.headerContainer}> 
                 <AppText style={styles.header}>
-                    Email : {user.email}
+                    Email : {user ? user.email:"unknown user"}
                 </AppText>
             </View>
             <ListItemSeparatorComponent/>
@@ -89,7 +113,7 @@ function SettingsScreen(props) {
                 ImageComponent={ <Icon name="delete" backgroundColor="red"
                 /> 
                 }
-                onPress={handleDelete}
+                onPress={deleteAccount}
             />
             <ListItemSeparatorComponent/>
             <ListItem

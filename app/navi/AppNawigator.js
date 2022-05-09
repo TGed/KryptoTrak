@@ -36,7 +36,7 @@ const AppNawigator = () => {
                         )
                     }}
                 />
-                <Tab.Screen
+                {/* <Tab.Screen
                     name="Favorites"
                     component={FavScreen}
                     options= {{
@@ -48,7 +48,7 @@ const AppNawigator = () => {
                             />
                         )
                     }}
-                />
+                /> */}
                 <Tab.Screen
                     name="Settings"
                     component={SettingsScreen}

@@ -32,7 +32,7 @@ return (
                         : styles.priceDown,
                     ]}
                 >
-                    {coin.price_change_percentage_24h.toFixed(2)}%
+                    {coin.price_change_percentage_24h != null && coin.price_change_percentage_24h.toFixed(2)}%
                 </Text>
             </View>
             <View style={styles.isFavIcon} >
