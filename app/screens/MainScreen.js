@@ -24,7 +24,6 @@ function MainScreen({navigation}) {
     useEffect(() => {
         loadData();
     },[]);
-
     // console.log(coins);
     return (
         <Screen style={styles.screen}>

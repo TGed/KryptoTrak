@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: "row",
         padding: 15,
-        backgroundColor: "#5026a3"
+        backgroundColor: "#121212",
     },
     detailsContainer:{
         marginLeft: 10,
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     },
     title:{
         fontWeight: "500",
+        color: colors.white,
     }
 })
 

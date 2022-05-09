@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, FlatList} from 'react-native';
+import { View, StyleSheet, Alert} from 'react-native';
 
 import ListItem from '../components/ListItem';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
 import Icon from '../components/Icon';
 import ListItemSeparatorComponent from '../components/ListItemSeparator';
-import { auth } from '../../firebase';
-import { signOut } from 'firebase/auth';
+import { auth, user } from '../../firebase';
+import { signOut, deleteUser } from 'firebase/auth';
+import AppText from '../components/AppText';
 
 const menuItems = [
     // {
@@ -18,9 +19,9 @@ const menuItems = [
     //     }
     // },
     {
-        title: "Typ Waluty",
+        title: "Zmień hasło",
         icon: {
-            name: "wallet", 
+            name: "lock", 
             backgroundColor : "blue"
         }
     },
@@ -30,55 +31,88 @@ const menuItems = [
             name: "delete", 
             backgroundColor : colors.danger
         }
+    },
+    {
+        title: "Wyloguj",
+        icon: {
+            name: "logout" ,
+            backgroundColor: "#ffe66d"
+        },
+        // onPress: {handleLogOut}
     }
 ]
 
 
 
 function SettingsScreen(props) {
-
     const handleLogOut = () => {
         signOut(auth);
     }
 
+    const handleDelete = () => {
+        Alert.alert(
+            "Deleting Account",
+            "Are you sure?",
+            [
+                {
+                    text: "Cancel",
+                    style: "cancel"
+                },
+                {
+                    text: "Delete",
+                    onPress: () => deleteUser(auth)
+                    
+                }
+            ]
+        );
+    }
+
     return (
         <Screen style={styles.screen}>
-            <View style={styles.container}> 
-                <ListItem
-                    title="Imie"
-                    subTitle="costam@gmail.com"
-                />
+            
+            <View style={styles.headerContainer}> 
+                <AppText style={styles.header}>
+                    Email : {user.email}
+                </AppText>
             </View>
-            <View style={styles.container}>
-                <FlatList
-                    data={menuItems}
-                    keyExtractor = {menuItem => menuItem.title}
-                    ItemSeparatorComponent={ListItemSeparatorComponent}
-                    renderItem={({item}) => 
-                        <ListItem
-                            title={item.title}
-                            ImageComponent={
-                                <Icon name={item.icon.name}
-                                backgroundColor={item.icon.backgroundColor}
-                                />                            }
-                        />
-                    }
-                />
-            </View>
+            <ListItemSeparatorComponent/>
             <ListItem
-                title="Wyloguj"
+                title="Change password"
+                ImageComponent={ <Icon name="lock" backgroundColor="blue"
+                /> 
+                }
+                // onPress={handlePasswordChange}
+            />
+            <ListItemSeparatorComponent/>
+            <ListItem
+                title="Delete account"
+                ImageComponent={ <Icon name="delete" backgroundColor="red"
+                /> 
+                }
+                onPress={handleDelete}
+            />
+            <ListItemSeparatorComponent/>
+            <ListItem
+                title="Log out"
                 ImageComponent={ <Icon name="logout" backgroundColor="#ffe66d"
                 /> 
                 }
                 onPress={handleLogOut}
             />
+            <ListItemSeparatorComponent/>
         </Screen>
     );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        marginVertical: 20,
+    header:{
+        color: colors.white,
+        fontSize: 20,
+        fontWeight: "bold",
+        textAlign:"center"
+    },
+    headerContainer: {
+        padding:10,
     },
     screen: {
         backgroundColor: "#121212"

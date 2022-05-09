@@ -6,9 +6,10 @@ import {
   createUserWithEmailAndPassword, 
   GoogleAuthProvider,
   signOut,
-  UserCredential,
+  UserCredential
  } 
   from "firebase/auth";
+  import {getFirestore} from "@firebase/firestore"
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,6 +29,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Initialize Firestore Database
+export const db = getFirestore(app);
+
 export const auth = getAuth(app);
 
 export async function logIn(email, password) {
@@ -44,4 +48,5 @@ export function logOut(auth) {
 
 export const googleAuth = new GoogleAuthProvider();
 
-export const user = UserCredential;
+export const user = auth.currentUser;
+

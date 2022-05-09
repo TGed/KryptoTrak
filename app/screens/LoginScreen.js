@@ -69,7 +69,7 @@ function LoginScreen({ navigation }) {
                 </AppForm>
                 <AppButton 
                     title="Zarejestruj"
-                    onPress={() => navigation.navigate(routes.FAVS)}
+                    onPress={() => navigation.navigate(routes.REGISTER)}
                 />
             </View>
         </ImageBackground>
