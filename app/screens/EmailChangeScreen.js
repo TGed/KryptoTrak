@@ -11,14 +11,14 @@ import AppText from '../components/AppText';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
-    password: Yup.string().required().min(8).label("Password"),
-    newemail: Yup.string().required().email().label("New email"),
+    // password: Yup.string().required().min(8).label("Password"),
+    // newemail: Yup.string().required().email().label("New email"),
 });
 
 function EmailChangeScreen(props) {
 
-    const handleSubmit = async ({newemail}) => {
-        changeEmail(newemail);
+    const handleSubmit = async ({email,password,newemail}) => {
+        changeEmail(email,password,newemail);
     }
 
     return (
@@ -28,7 +28,11 @@ function EmailChangeScreen(props) {
                     Confirm your informations
                 </AppText>
                 <AppForm
-                    initialValues={{email:"", password: "", newemail: "" }}
+                    initialValues={{
+                        email:"", 
+                        password: "", 
+                        newemail: "" 
+                    }}
                     onSubmit={handleSubmit}
                     validationSchema={validationSchema}
                 >

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
-import {signUp} from '../../firebase';
+import {changePassword} from '../../firebase';
 
 import Screen from '../components/Screen';
 import {AppForm, AppFormField, SubmitButton } from '../components/forms';
@@ -12,13 +12,13 @@ const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(8).label("Password"),
     newpassword: Yup.string().required().min(8).label("New Password"),
-    confirmpassword: Yup.string().oneOf([Yup.ref('password'),null], "Password must match"),
+    confirmpassword: Yup.string().oneOf([Yup.ref('newpassword'),null], "Password must match"),
 });
 
 function ResetPassScreen(props) {
 
-    const handleSubmit = async ({email, password}) => {
-        signUp(email,password);
+    const handleSubmit = ({email, password, newpassword}) => {
+        changePassword(email,password,newpassword);
     }
 
     return (
@@ -28,13 +28,10 @@ function ResetPassScreen(props) {
                     Confirm your informations
                 </AppText>
                 <AppForm
-                    initialValues={{email:"", password: "" }}
+                    initialValues={{email:"", password: "", newpassword:"",confirmpassword:"" }}
                     onSubmit={handleSubmit}
                     validationSchema={validationSchema}
                 >
-                    <ErrorMessage
-                        error="Niepoprawny email i/lub hasło."
-                    />
                     <AppFormField
                         autoCapitalize="none"
                         autoCorrect={false}

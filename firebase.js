@@ -3,12 +3,16 @@ import { initializeApp } from "firebase/app";
 import { 
   getAuth, 
   signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword, 
+  createUserWithEmailAndPassword,
+  reauthenticateWithCredential, 
   signOut,
+  AuthProvider,
   updateEmail,
+  AuthCredential,
+  EmailAuthProvider,
+  updatePassword,
  } 
   from "firebase/auth";
-import { Alert } from "react-native-web";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -42,32 +46,30 @@ export function logOut(auth) {
   signOut(auth).catch(error => console.log('Error logging out: ',error));
 }
 
-export function changeEmail2(email) {
-  updateEmail(auth.currentUser, email).then(() => {
-    Alert.alert(
-      "Email Changed",
-      [
-          {
-              text: "Ok",
-              style: "Ok"
-          }
-      ]
-    );
+function reauthenticate (email,password) {
+  const credentials = EmailAuthProvider.credential(
+    email,
+    password
+  )
+  reauthenticateWithCredential(auth.currentUser, credentials).then(() => {
+    console.log('reauthenticated')
   }).catch((error) => {
-    Alert.alert(
-      {error},
-      [
-          {
-              text: "Ok",
-              style: "Ok"
-          }
-      ]
-    );
+    console.log(error)
   })
 }
 
-export function changeEmail (newemail){
-  console.log("email changed "+newemail)
+export function changeEmail (oldEmail,password,newEmail) {
+  reauthenticate(oldEmail,password)
+  updateEmail(auth.currentUser, newEmail).then(() => {
+    logOut(auth);
+  })
+}
+
+export function changePassword (email,oldPassword,newPassword) {
+  reauthenticate(email,oldPassword)
+  updatePassword(auth.currentUser,newPassword).then(() => {
+    logOut(auth);
+  })
 }
 
 
