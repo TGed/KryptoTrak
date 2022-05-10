@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Alert, Modal} from 'react-native';
+import { View, StyleSheet, Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import ListItem from '../components/ListItem';

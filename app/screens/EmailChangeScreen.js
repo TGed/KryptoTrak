@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {Text, View, ImageBackground, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import constants from 'expo-constants';
 import * as Yup from 'yup';
 
-import {changeEmail, signUp} from '../../firebase';
+import {changeEmail} from '../../firebase';
 
 import Screen from '../components/Screen';
 import {AppForm, AppFormField, SubmitButton } from '../components/forms';

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -18,7 +18,7 @@ function ChartScreen({route,navigation}) {
 
     return (
         <Screen style={styles.screen}>
-            <CoinChart coinId={coin.id} curPrice={coin.current_price}/>
+            <CoinChart coinId={coin.id}/>
             <View style={styles.statsContainer}>
                 <View>
                     <AppText style={styles.text}>Current Price : </AppText><AppText style={styles.subText}>$ {ValueFormat(coin.current_price)}</AppText>

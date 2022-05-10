@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import {signUp} from '../../firebase';
 
 import Screen from '../components/Screen';
-import {AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components/forms';
+import {AppForm, AppFormField, SubmitButton } from '../components/forms';
 import AppText from '../components/AppText';
 
 const validationSchema = Yup.object().shape({
