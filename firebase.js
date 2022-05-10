@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
   signOut,
+  setPersistence,
  } 
   from "firebase/auth";
   import {getFirestore} from "@firebase/firestore"
@@ -41,6 +42,6 @@ export function logOut(auth) {
   signOut(auth).catch(error => console.log('Error logging out: ',error));
 }
 
-export const user = auth.currentUser;
+
 
 

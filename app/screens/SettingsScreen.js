@@ -6,7 +6,7 @@ import Screen from '../components/Screen';
 import colors from '../config/colors';
 import Icon from '../components/Icon';
 import ListItemSeparatorComponent from '../components/ListItemSeparator';
-import { auth, user } from '../../firebase';
+import { auth } from '../../firebase';
 import { signOut, deleteUser } from 'firebase/auth';
 import AppText from '../components/AppText';
 
@@ -44,35 +44,15 @@ const menuItems = [
 
 
 
+
 function SettingsScreen(props) {
+
+    const user = auth.currentUser;
+
     const handleLogOut = () => {
         signOut(auth);
-    }
-
-    const deleteAccount = () => {
-        return (
-            <Modal
-              animationType="slide"
-              transparent={true}
-              onBackdropPress={() => console.log('Pressed')}
-              visible={props.modalVisible}
-              >
-              <View
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  right: 0,
-                  backgroundColor: '#4D4D4D',
-                  width: (500),
-                  height: (500)
-                }}>
-                
-          
-              </View>
-            </Modal>
-          );
-    }
-
+    }        
+            
     const handleDelete = () => {
         Alert.alert(
             "Deleting Account",
@@ -101,8 +81,15 @@ function SettingsScreen(props) {
             </View>
             <ListItemSeparatorComponent/>
             <ListItem
-                title="Change password"
-                ImageComponent={ <Icon name="lock" backgroundColor="blue"
+                title="Reset password"
+                ImageComponent={ <Icon name="lock" backgroundColor="#09b858"
+                /> 
+                }
+                // onPress={handlePasswordChange}
+            />
+            <ListItem
+                title="Change email"
+                ImageComponent={ <Icon name="email" backgroundColor="blue"
                 /> 
                 }
                 // onPress={handlePasswordChange}
@@ -110,15 +97,15 @@ function SettingsScreen(props) {
             <ListItemSeparatorComponent/>
             <ListItem
                 title="Delete account"
-                ImageComponent={ <Icon name="delete" backgroundColor="red"
+                ImageComponent={ <Icon name="delete" backgroundColor="#1fb6d1"
                 /> 
                 }
-                onPress={deleteAccount}
+                // onPress={deleteAccount}
             />
             <ListItemSeparatorComponent/>
             <ListItem
                 title="Log out"
-                ImageComponent={ <Icon name="logout" backgroundColor="#ffe66d"
+                ImageComponent={ <Icon name="logout" backgroundColor="#d11f55"
                 /> 
                 }
                 onPress={handleLogOut}
