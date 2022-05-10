@@ -10,39 +10,6 @@ import { auth } from '../../firebase';
 import { signOut, deleteUser } from 'firebase/auth';
 import AppText from '../components/AppText';
 
-const menuItems = [
-    // {
-    //     title: "Moje ustawienia",
-    //     icon: {
-    //         name: "format-list-bulleted", 
-    //         backgroundColor : colors.secondary
-    //     }
-    // },
-    {
-        title: "Zmień hasło",
-        icon: {
-            name: "lock", 
-            backgroundColor : "blue"
-        }
-    },
-    {
-        title: "Usuń konto",
-        icon: {
-            name: "delete", 
-            backgroundColor : colors.danger
-        }
-    },
-    {
-        title: "Wyloguj",
-        icon: {
-            name: "logout" ,
-            backgroundColor: "#ffe66d"
-        },
-        // onPress: {handleLogOut}
-    }
-]
-
-
 
 
 function SettingsScreen(props) {

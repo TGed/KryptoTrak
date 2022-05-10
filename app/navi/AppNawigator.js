@@ -5,8 +5,6 @@ import { MaterialCommunityIcons} from '@expo/vector-icons'
 
 import MainNavigator from './MainNavigator';
 import SettingsScreen from '../screens/SettingsScreen';
-import FavScreen from '../screens/FavScreen';
-import ChartScreen from '../screens/ChartScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -36,19 +34,6 @@ const AppNawigator = () => {
                         )
                     }}
                 />
-                {/* <Tab.Screen
-                    name="Favorites"
-                    component={FavScreen}
-                    options= {{
-                        tabBarIcon: ({color,size}) => (
-                            <MaterialCommunityIcons 
-                                name="star"
-                                color={color}
-                                size={size}
-                            />
-                        )
-                    }}
-                /> */}
                 <Tab.Screen
                     name="Settings"
                     component={SettingsScreen}
