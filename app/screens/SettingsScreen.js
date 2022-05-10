@@ -18,7 +18,15 @@ function SettingsScreen(props) {
 
     const handleLogOut = () => {
         signOut(auth);
-    }        
+    }
+    
+    const handleEmailChange = () => {
+
+    }
+
+    const handlePasswordRes = () => {
+        
+    }
             
     const handleDelete = () => {
         Alert.alert(
