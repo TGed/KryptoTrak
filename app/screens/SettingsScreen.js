@@ -87,6 +87,7 @@ function SettingsScreen(props) {
                 }
                 // onPress={handlePasswordChange}
             />
+            <ListItemSeparatorComponent/>
             <ListItem
                 title="Change email"
                 ImageComponent={ <Icon name="email" backgroundColor="blue"

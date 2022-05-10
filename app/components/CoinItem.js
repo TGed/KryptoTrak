@@ -35,12 +35,6 @@ return (
                     {coin.price_change_percentage_24h != null && coin.price_change_percentage_24h.toFixed(2)}%
                 </Text>
             </View>
-            <View style={styles.isFavIcon} >
-            <Icon 
-              name="star"
-              onPress={()=>(console.log(coin.name))}
-            /> 
-            </View>
         </View>
     </View>
   </TouchableHighlight>
@@ -59,6 +53,8 @@ const styles = StyleSheet.create({
     alignContent:"center",
     alignItems:"center",
     paddingBottom:5,
+    marginLeft:5,
+    marginRight:5,
   },
   containerNames: {
     marginLeft: 10,
@@ -78,7 +74,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontSize: 25,
     marginRight:15,
-    marginLeft: 2,
   },
   pricePercentage: {
     textAlign: "right",
@@ -88,13 +83,6 @@ const styles = StyleSheet.create({
   },
   priceDown: {
     color: "#fc4422",
-  },
-  isFavIcon: {
-    marginLeft:10,
-    borderRadius:5
-  },
-  isNotFavIcon:{
-
   },
   image: {
     width: 30,
