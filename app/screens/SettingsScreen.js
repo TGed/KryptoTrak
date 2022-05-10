@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Alert, Modal} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import ListItem from '../components/ListItem';
 import Screen from '../components/Screen';
@@ -9,10 +10,13 @@ import ListItemSeparatorComponent from '../components/ListItemSeparator';
 import { auth } from '../../firebase';
 import { signOut, deleteUser } from 'firebase/auth';
 import AppText from '../components/AppText';
+import routes from '../navi/routes';
 
 
 
-function SettingsScreen(props) {
+function SettingsScreen() {
+
+    const navigation = useNavigation();
 
     const user = auth.currentUser;
 
@@ -20,14 +24,6 @@ function SettingsScreen(props) {
         signOut(auth);
     }
     
-    const handleEmailChange = () => {
-
-    }
-
-    const handlePasswordRes = () => {
-        
-    }
-            
     const handleDelete = () => {
         Alert.alert(
             "Deleting Account",
@@ -56,11 +52,11 @@ function SettingsScreen(props) {
             </View>
             <ListItemSeparatorComponent/>
             <ListItem
-                title="Reset password"
+                title="Change password"
                 ImageComponent={ <Icon name="lock" backgroundColor="#09b858"
                 /> 
                 }
-                // onPress={handlePasswordChange}
+                onPress={() => navigation.navigate(routes.RESET)}
             />
             <ListItemSeparatorComponent/>
             <ListItem
@@ -68,7 +64,7 @@ function SettingsScreen(props) {
                 ImageComponent={ <Icon name="email" backgroundColor="blue"
                 /> 
                 }
-                // onPress={handlePasswordChange}
+                onPress={() => navigation.navigate(routes.EMAIL)}
             />
             <ListItemSeparatorComponent/>
             <ListItem
@@ -76,7 +72,7 @@ function SettingsScreen(props) {
                 ImageComponent={ <Icon name="delete" backgroundColor="#1fb6d1"
                 /> 
                 }
-                // onPress={deleteAccount}
+                onPress={() => navigation.navigate(routes.DELETE)}
             />
             <ListItemSeparatorComponent/>
             <ListItem
@@ -102,7 +98,8 @@ const styles = StyleSheet.create({
         padding:10,
     },
     screen: {
-        backgroundColor: "#121212"
+        backgroundColor: "#121212",
+        flex: 1,
     }
 })
 export default SettingsScreen;

@@ -1,49 +1,37 @@
 import React, {useState} from 'react';
 import {Text, View, ImageBackground, StyleSheet } from 'react-native';
-import {Entypo} from '@expo/vector-icons'
 import constants from 'expo-constants';
 import * as Yup from 'yup';
 
-import {signUp} from '../../firebase';
+import {changeEmail, signUp} from '../../firebase';
 
-import {AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components/forms';
+import Screen from '../components/Screen';
+import {AppForm, AppFormField, SubmitButton } from '../components/forms';
+import AppText from '../components/AppText';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(8).label("Password"),
-    confirmPassword: Yup.string().required().min(8).label("confirm Password"),
+    newemail: Yup.string().required().email().label("New email"),
 });
 
 function EmailChangeScreen(props) {
 
-    const handleSubmit = async ({email, password}) => {
-        signUp(email,password);
+    const handleSubmit = async ({newemail}) => {
+        changeEmail(newemail);
     }
 
     return (
-        <ImageBackground
-            blurRadius={3}
-            style={styles.background}
-            source={require("../assets/background.png")}
-            >
-            <View style={styles.logoContainer}>
-                {<Entypo 
-                    name="credit"
-                    color='yellow'
-                    size= {50}
-                />}
-                <Text style={styles.tagline}>KryptoTrak</Text>    
-            </View>
+        <Screen style={styles.screen}>
             <View style={styles.formContainer}>
+                <AppText style={styles.text}>
+                    Confirm your informations
+                </AppText>
                 <AppForm
-                    initialValues={{email:"", password: "" }}
+                    initialValues={{email:"", password: "", newemail: "" }}
                     onSubmit={handleSubmit}
                     validationSchema={validationSchema}
                 >
-                    <ErrorMessage
-                        error="Niepoprawny email i/lub hasło."
-                        //visible={loginFailed}
-                    />
                     <AppFormField
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -61,34 +49,41 @@ function EmailChangeScreen(props) {
                         secureTextEntry
                         textContentType="password"
                     />
-                    <SubmitButton title="Zarejestruj" color='secondary'/>
+                    <AppText style={styles.text}>
+                        Enter new email address
+                    </AppText>
+                    <AppFormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="email"
+                        keyboardType="email-address"
+                        name="newemail"
+                        placeholder="New email"
+                    />
+                    <SubmitButton title="Change Email" color='secondary'/>
                 </AppForm>
             </View>
-        </ImageBackground>
+        </Screen>
     );
 }
 
 const styles = StyleSheet.create({
-    background:{
-        flex:1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
     formContainer: {
         padding: 10,
         width: "100%",
-        marginBottom: 50
+        marginBottom: 50,
+        alignSelf:"flex-end"
     },
-    logoContainer:{
-        position: 'absolute',
-        top: constants.statusBarHeight,
-        alignItems: 'center',
+    screen: {
+        backgroundColor: "#121212",
+        justifyContent:"center"
     },
-    tagline:{
-        fontSize: 25,
-        fontWeight: "600",
-        paddingVertical: 20,
-        color: 'yellow'
+    text:{
+        color:"white",
+        alignSelf:"center",
+        fontWeight:"bold",
+        fontSize:17,
+
     }
 })
 

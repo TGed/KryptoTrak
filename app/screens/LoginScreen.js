@@ -15,7 +15,7 @@ import {logIn} from '../../firebase';
 
 import routes from '../navi/routes';
 import AppButton from '../components/AppButton';
-import {AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components/forms';
+import {AppForm, AppFormField, SubmitButton } from '../components/forms';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -28,8 +28,6 @@ function LoginScreen({ navigation }) {
     const handleSubmit = ({email,password}) => {
         logIn(email,password);
     }
-
-
 
     return (
         <ImageBackground
@@ -48,17 +46,13 @@ function LoginScreen({ navigation }) {
                 <View style={styles.formContainer}>
                     <KeyboardAvoidingView 
                         behavior='position'
-                        keyboardVerticalOffset={Platform.OS == "ios" ? 0:100}
+                        keyboardVerticalOffset={Platform.OS == "ios" ? 0:-300 }
                     >
                     <AppForm
                         initialValues={{email:"", password: "" }}
                         onSubmit={handleSubmit}
                         validationSchema={validationSchema}
                     >
-                        <ErrorMessage
-                            error="Niepoprawny email i/lub hasło."
-                            //visible={loginFailed}
-                        />
                         <AppFormField
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -79,7 +73,7 @@ function LoginScreen({ navigation }) {
                         <SubmitButton title="Login" color='secondary'/>
                     </AppForm>
                     <AppButton 
-                        title="Zarejestruj"
+                        title="Register Account"
                         onPress={() => navigation.navigate(routes.REGISTER)}
                     />
                     </KeyboardAvoidingView>
@@ -91,14 +85,14 @@ function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
     background:{
         flex:1,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     formContainer: {
         padding: 10,
         width: "100%",
         height: "100%",
-        justifyContent:"flex-end",
+        justifyContent:"center",
         marginBottom: 50,
         backgroundColor:"transparent"
     },

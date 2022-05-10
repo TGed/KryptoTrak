@@ -3,5 +3,8 @@ export default Object.freeze({
     LOGIN: "LoginScreen",
     MAIN: "MainScreen",
     REGISTER: "RegisterScreen",
-    SETTINGS: "SettingsScreen"
+    SETTINGS: "SettingsScreen",
+    EMAIL: "EmailChangeScreen",
+    DELETE: "AccDeleteScreen",
+    RESET: "ResetPassScreen",
 });

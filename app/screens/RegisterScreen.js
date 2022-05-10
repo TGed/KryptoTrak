@@ -1,22 +1,34 @@
-import React, {useState} from 'react';
-import {Text, View, ImageBackground, StyleSheet } from 'react-native';
+import React from 'react';
+import {
+    Text, 
+    View, 
+    ImageBackground, 
+    StyleSheet,
+    KeyboardAvoidingView
+} from 'react-native';
 import {Entypo} from '@expo/vector-icons'
 import constants from 'expo-constants';
 import * as Yup from 'yup';
-
+import { useNavigation } from '@react-navigation/native';
 import {signUp} from '../../firebase';
 
 import {AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components/forms';
+import routes from '../navi/routes';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(8).label("Password"),
-    confirmPassword: Yup.string().required().min(8).label("confirm Password"),
+    confirmpassword: Yup.string().oneOf([Yup.ref('password'),null], "Password must match"),
 });
 
-function RegisterScreen(props) {
-    const handleSubmit = async ({email, password}) => {
+function RegisterScreen() {
+
+    const navigation = useNavigation();
+
+    const handleSubmit = ({email, password}) => {
         signUp(email,password);
+        console.log("rejestrowanie")
+        navigation.navigate(routes.LOGIN)
     }
 
     return (
@@ -34,34 +46,47 @@ function RegisterScreen(props) {
                 <Text style={styles.tagline}>KryptoTrak</Text>    
             </View>
             <View style={styles.formContainer}>
-                <AppForm
-                    initialValues={{email:"", password: "" }}
-                    onSubmit={handleSubmit}
-                    validationSchema={validationSchema}
+                <KeyboardAvoidingView 
+                    behavior='position'
+                    keyboardVerticalOffset={Platform.OS == "ios" ? 0:0 }
                 >
-                    <ErrorMessage
-                        error="Niepoprawny email i/lub hasło."
-                        //visible={loginFailed}
-                    />
-                    <AppFormField
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        icon="email"
-                        keyboardType="email-address"
-                        name="email"
-                        placeholder="Email"
-                    />
-                    <AppFormField
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        icon="lock"
-                        name="password"
-                        placeholder="Password"
-                        secureTextEntry
-                        textContentType="password"
-                    />
-                    <SubmitButton title="Zarejestruj" color='secondary'/>
-                </AppForm>
+                    <AppForm
+                        initialValues={{email:"", password: "" }}
+                        onSubmit={handleSubmit}
+                        validationSchema={validationSchema}
+                    >
+                        <ErrorMessage
+                            error="Niepoprawny email i/lub hasło."
+                        />
+                        <AppFormField
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            icon="email"
+                            keyboardType="email-address"
+                            name="email"
+                            placeholder="Email"
+                        />
+                        <AppFormField
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            icon="lock"
+                            name="password"
+                            placeholder="Password"
+                            secureTextEntry
+                            textContentType="password"
+                        />
+                        <AppFormField
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            icon="lock"
+                            name="confirmpassword"
+                            placeholder="Confirm password"
+                            secureTextEntry
+                            textContentType="password"
+                        />
+                        <SubmitButton title="Register Account" color='secondary'/>
+                    </AppForm>
+                </KeyboardAvoidingView>
             </View>
         </ImageBackground>
     );
@@ -70,13 +95,16 @@ function RegisterScreen(props) {
 const styles = StyleSheet.create({
     background:{
         flex:1,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     formContainer: {
         padding: 10,
         width: "100%",
-        marginBottom: 50
+        height: "100%",
+        justifyContent:"center",
+        marginBottom: 50,
+        backgroundColor:"transparent"
     },
     logoContainer:{
         position: 'absolute',

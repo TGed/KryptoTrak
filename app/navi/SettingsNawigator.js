@@ -10,48 +10,45 @@ import { Settings } from 'react-native-web';
 const Stack = createStackNavigator();
 
 const SettingsScreenNawigator = () => (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+        presentation:'modal',
+        
+    }}>
         <Stack.Screen
             name="SettingsScreen"
             component={SettingsScreen}
             options={{headerShown:false}}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
             name="ResetPassScreen"
             component={ResetPassScreen}
             options={{
                 headerBackTitleVisible:false,
                 headerTransparent:true,
-                headerTitleStyle : {
-                    color:"white"
-                }
+                headerTitle:"",
                 
             }}
-        /> */}
+        />
         <Stack.Screen
             name="EmailChangeScreen"
             component={EmailChangeScreen}
             options={{
                 headerBackTitleVisible:false,
                 headerTransparent:true,
-                headerTitleStyle : {
-                    color:"white"
-                }
-                
+                headerTitle:"",
             }}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
             name="AccDeleteScreen"
+            scre
             component={AccDeleteScreen}
             options={{
                 headerBackTitleVisible:false,
                 headerTransparent:true,
-                headerTitleStyle : {
-                    color:"white"
-                }
+                headerTitle:"",
                 
             }}
-        /> */}
+        />
     </Stack.Navigator>
 )
 

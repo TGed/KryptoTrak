@@ -5,10 +5,10 @@ import {
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
   signOut,
-  setPersistence,
+  updateEmail,
  } 
   from "firebase/auth";
-  import {getFirestore} from "@firebase/firestore"
+import { Alert } from "react-native-web";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -42,6 +42,32 @@ export function logOut(auth) {
   signOut(auth).catch(error => console.log('Error logging out: ',error));
 }
 
+export function changeEmail2(email) {
+  updateEmail(auth.currentUser, email).then(() => {
+    Alert.alert(
+      "Email Changed",
+      [
+          {
+              text: "Ok",
+              style: "Ok"
+          }
+      ]
+    );
+  }).catch((error) => {
+    Alert.alert(
+      {error},
+      [
+          {
+              text: "Ok",
+              style: "Ok"
+          }
+      ]
+    );
+  })
+}
 
+export function changeEmail (newemail){
+  console.log("email changed "+newemail)
+}
 
 

@@ -3,7 +3,7 @@ import { View, StyleSheet, Dimensions } from 'react-native'
 import { VictoryLine,VictoryChart, VictoryAxis } from "victory-native";
 
 
-function CoinChart({coinId,curPrice}) {
+function CoinChart({coinId}) {
    const [marketData, setMarketData] = useState([]);
 
    const charTheme = {
@@ -33,8 +33,6 @@ function CoinChart({coinId,curPrice}) {
    useEffect(() => {
       getData();
    },[]);
-
-   //console.log(marketData);
 
    return (
          <VictoryChart theme={charTheme}>
