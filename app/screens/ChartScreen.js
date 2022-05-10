@@ -6,7 +6,6 @@ import Screen from '../components/Screen';
 import colors from '../config/colors';
 import ValueFormat from '../components/ValueFormat';
 import AppText from '../components/AppText';
-import AppButton from '../components/AppButton';
 import CoinChart from '../components/CoinChart';
 
 
@@ -32,7 +31,7 @@ function ChartScreen({route,navigation}) {
                     <AppText style={styles.text}>From ATH :</AppText>
                     <AppText style={[
                         styles.pricePercentage,
-                        coin.price_change_percentage_24h > 0
+                        coin.ath_change_percentage > 0
                         ? styles.valueUp
                         : styles.valueDown,
                     ]}> 

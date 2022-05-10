@@ -5,6 +5,7 @@ import { MaterialCommunityIcons} from '@expo/vector-icons'
 
 import MainNavigator from './MainNavigator';
 import SettingsScreen from '../screens/SettingsScreen';
+import SettingsScreenNawigator from './SettingsNawigator';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -36,7 +37,7 @@ const AppNawigator = () => {
                 />
                 <Tab.Screen
                     name="Settings"
-                    component={SettingsScreen}
+                    component={SettingsScreenNawigator}
                     options= {{
                         tabBarIcon: ({color,size}) => (
                             <MaterialCommunityIcons 

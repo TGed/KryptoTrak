@@ -14,7 +14,8 @@ const validationSchema = Yup.object().shape({
     confirmPassword: Yup.string().required().min(8).label("confirm Password"),
 });
 
-function RegisterScreen(props) {
+function EmailChangeScreen(props) {
+
     const handleSubmit = async ({email, password}) => {
         signUp(email,password);
     }
@@ -91,4 +92,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RegisterScreen;
+export default EmailChangeScreen;

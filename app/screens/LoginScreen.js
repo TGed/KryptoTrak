@@ -1,5 +1,12 @@
 import React from 'react';
-import {Text, View, ImageBackground, StyleSheet } from 'react-native';
+import {
+    Text, 
+    View, 
+    ImageBackground, 
+    StyleSheet,
+    Platform, 
+    KeyboardAvoidingView 
+} from 'react-native';
 import {Entypo} from '@expo/vector-icons'
 import constants from 'expo-constants';
 import * as Yup from 'yup';
@@ -38,40 +45,45 @@ function LoginScreen({ navigation }) {
                 />}
                 <Text style={styles.tagline}>KryptoTrak</Text>    
             </View>
-            <View style={styles.formContainer}>
-                <AppForm
-                    initialValues={{email:"", password: "" }}
-                    onSubmit={handleSubmit}
-                    validationSchema={validationSchema}
-                >
-                    <ErrorMessage
-                        error="Niepoprawny email i/lub hasło."
-                        //visible={loginFailed}
+                <View style={styles.formContainer}>
+                    <KeyboardAvoidingView 
+                        behavior='position'
+                        keyboardVerticalOffset={Platform.OS == "ios" ? 0:100}
+                    >
+                    <AppForm
+                        initialValues={{email:"", password: "" }}
+                        onSubmit={handleSubmit}
+                        validationSchema={validationSchema}
+                    >
+                        <ErrorMessage
+                            error="Niepoprawny email i/lub hasło."
+                            //visible={loginFailed}
+                        />
+                        <AppFormField
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            icon="email"
+                            keyboardType="email-address"
+                            name="email"
+                            placeholder="Email"
+                        />
+                        <AppFormField
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            icon="lock"
+                            name="password"
+                            placeholder="Password"
+                            secureTextEntry
+                            textContentType="password"
+                        />
+                        <SubmitButton title="Login" color='secondary'/>
+                    </AppForm>
+                    <AppButton 
+                        title="Zarejestruj"
+                        onPress={() => navigation.navigate(routes.REGISTER)}
                     />
-                    <AppFormField
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        icon="email"
-                        keyboardType="email-address"
-                        name="email"
-                        placeholder="Email"
-                    />
-                    <AppFormField
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        icon="lock"
-                        name="password"
-                        placeholder="Password"
-                        secureTextEntry
-                        textContentType="password"
-                    />
-                    <SubmitButton title="Login" color='secondary'/>
-                </AppForm>
-                <AppButton 
-                    title="Zarejestruj"
-                    onPress={() => navigation.navigate(routes.REGISTER)}
-                />
-            </View>
+                    </KeyboardAvoidingView>
+                </View>
         </ImageBackground>
     );
 }
@@ -85,7 +97,10 @@ const styles = StyleSheet.create({
     formContainer: {
         padding: 10,
         width: "100%",
-        marginBottom: 50
+        height: "100%",
+        justifyContent:"flex-end",
+        marginBottom: 50,
+        backgroundColor:"transparent"
     },
     logoContainer:{
         position: 'absolute',

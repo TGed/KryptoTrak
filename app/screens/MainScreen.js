@@ -11,7 +11,7 @@ function MainScreen({}) {
     const [coins, setCoins] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
     const [search, setSearch] = useState("");
-    var [page, setPage] = useState(1);
+    const [page, setPage] = useState(1);
 
     const loadData = async () => {
         const res =  await fetch(
@@ -23,15 +23,14 @@ function MainScreen({}) {
 
     const handleIncrement = () => {
         setPage(page+1)
-        console.log(page)
+        loadData()
     }
 
     const handleDecrement = () => {
         if (page > 0) {
-            setPage(page-1); 
-            console.log(page)
+            setPage(page-1);
+            loadData()
         }
-        
     }
 
 
@@ -39,6 +38,8 @@ function MainScreen({}) {
     useEffect(() => {
         loadData();
     },[]);
+
+
 
     return (
         <Screen style={styles.screen}>
@@ -50,6 +51,7 @@ function MainScreen({}) {
                 autoCorrect={false}
                 placeholder= "Search cryptocurrency"
                 onChangeText={(text) => setSearch(text)}
+                extraData={(coins.entries)}
             />
 
             <FlatList
@@ -69,7 +71,7 @@ function MainScreen({}) {
                     await loadData();
                     setRefreshing(false);
                 }}
-                extraData={coins}
+                extraData={coins.entries()}
             />
             <View style={styles.buttonsContainer}>
                 <View style={styles.previousButton}>
