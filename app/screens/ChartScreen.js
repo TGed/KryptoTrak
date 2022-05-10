@@ -17,23 +17,6 @@ function ChartScreen({route,navigation}) {
         navigation.setOptions({title: coin.name})
     });
 
-    const [data, setData] = useState([]);
-    // const [refreshing, setRefreshing] = useState(false);
-    // const [search, setSearch] = useState("");
-
-    // const loadData = async () => {
-    //     const res =  await fetch(
-    //         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids="+coinId+"&order=market_cap_desc&per_page=1&page=1&sparkline=false"
-    //     );
-    //     const data = await res.json();
-    //     setCoin(data);
-    // }
-
-    
-    // useEffect(() => {
-    //     loadData();
-    // },[]);
-
     return (
         <Screen style={styles.screen}>
             <CoinChart coinId={coin.id} curPrice={coin.current_price}/>
@@ -77,9 +60,6 @@ function ChartScreen({route,navigation}) {
                     </AppText>
                 </View>   
             </View>
-            <View style={styles.favButton}>
-                <AppButton title={"Dodaj do ulubionych"}/> 
-            </View>
         </Screen>
     );
 }
@@ -98,9 +78,6 @@ const styles = StyleSheet.create({
         marginLeft:20,
         marginRight:20,
 
-    },
-    favButton:{
-        padding:10,
     },
     screen:{
         backgroundColor: "#121212",
