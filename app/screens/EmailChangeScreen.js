@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import constants from 'expo-constants';
+import { View, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import * as Yup from 'yup';
 
 import {changeEmail} from '../../firebase';
@@ -17,55 +16,59 @@ const validationSchema = Yup.object().shape({
 
 function EmailChangeScreen(props) {
 
-    const handleSubmit = async ({email,password,newemail}) => {
-        changeEmail(email,password,newemail);
+    const handleSubmit = async ({password,newemail}) => {
+        changeEmail(password,newemail);
     }
 
     return (
         <Screen style={styles.screen}>
             <View style={styles.formContainer}>
-                <AppText style={styles.text}>
-                    Confirm your informations
-                </AppText>
-                <AppForm
-                    initialValues={{
-                        email:"", 
-                        password: "", 
-                        newemail: "" 
-                    }}
-                    onSubmit={handleSubmit}
-                    validationSchema={validationSchema}
+                <KeyboardAvoidingView 
+                    behavior='position'
                 >
-                    <AppFormField
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        icon="email"
-                        keyboardType="email-address"
-                        name="email"
-                        placeholder="Email"
-                    />
-                    <AppFormField
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        icon="lock"
-                        name="password"
-                        placeholder="Password"
-                        secureTextEntry
-                        textContentType="password"
-                    />
                     <AppText style={styles.text}>
-                        Enter new email address
+                        Confirm your informations
                     </AppText>
-                    <AppFormField
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        icon="email"
-                        keyboardType="email-address"
-                        name="newemail"
-                        placeholder="New email"
-                    />
-                    <SubmitButton title="Change Email" color='secondary'/>
-                </AppForm>
+                    <AppForm
+                        initialValues={{
+                            email:"", 
+                            password: "", 
+                            newemail: "" 
+                        }}
+                        onSubmit={handleSubmit}
+                        validationSchema={validationSchema}
+                    >
+                        <AppFormField
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            icon="email"
+                            keyboardType="email-address"
+                            name="email"
+                            placeholder="Email"
+                        />
+                        <AppFormField
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            icon="lock"
+                            name="password"
+                            placeholder="Password"
+                            secureTextEntry
+                            textContentType="password"
+                        />
+                        <AppText style={styles.text}>
+                            Enter new email address
+                        </AppText>
+                        <AppFormField
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            icon="email"
+                            keyboardType="email-address"
+                            name="newemail"
+                            placeholder="New email"
+                        />
+                        <SubmitButton title="Change Email" color='secondary'/>
+                    </AppForm>
+                </KeyboardAvoidingView>
             </View>
         </Screen>
     );
@@ -75,8 +78,8 @@ const styles = StyleSheet.create({
     formContainer: {
         padding: 10,
         width: "100%",
-        marginBottom: 50,
-        alignSelf:"flex-end"
+        height: Platform.OS == "ios" ? "100%":null ,
+        justifyContent:"center",
     },
     screen: {
         backgroundColor: "#121212",

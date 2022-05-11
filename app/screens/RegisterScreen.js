@@ -4,7 +4,8 @@ import {
     View, 
     ImageBackground, 
     StyleSheet,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    Platform
 } from 'react-native';
 import {Entypo} from '@expo/vector-icons'
 import constants from 'expo-constants';
@@ -12,7 +13,7 @@ import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
 import {signUp} from '../../firebase';
 
-import {AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components/forms';
+import {AppForm, AppFormField, SubmitButton } from '../components/forms';
 import routes from '../navi/routes';
 
 const validationSchema = Yup.object().shape({
@@ -21,13 +22,12 @@ const validationSchema = Yup.object().shape({
     confirmpassword: Yup.string().oneOf([Yup.ref('password'),null], "Password must match"),
 });
 
-function RegisterScreen() {
+function RegisterScreen(props) {
 
     const navigation = useNavigation();
 
     const handleSubmit = ({email, password}) => {
         signUp(email,password);
-        console.log("rejestrowanie")
         navigation.navigate(routes.LOGIN)
     }
 
@@ -55,9 +55,6 @@ function RegisterScreen() {
                         onSubmit={handleSubmit}
                         validationSchema={validationSchema}
                     >
-                        <ErrorMessage
-                            error="Niepoprawny email i/lub hasło."
-                        />
                         <AppFormField
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -103,7 +100,7 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         justifyContent:"center",
-        marginBottom: 50,
+        marginBottom: Platform.OS == "ios" ? 50:0,
         backgroundColor:"transparent"
     },
     logoContainer:{

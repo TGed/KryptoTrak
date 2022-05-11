@@ -11,6 +11,7 @@ import {
   AuthCredential,
   EmailAuthProvider,
   updatePassword,
+  deleteUser,
  } 
   from "firebase/auth";
 
@@ -46,9 +47,9 @@ export function logOut(auth) {
   signOut(auth).catch(error => console.log('Error logging out: ',error));
 }
 
-function reauthenticate (email,password) {
+function reauthenticate (password) {
   const credentials = EmailAuthProvider.credential(
-    email,
+    auth.currentUser.email,
     password
   )
   reauthenticateWithCredential(auth.currentUser, credentials).then(() => {
@@ -58,18 +59,23 @@ function reauthenticate (email,password) {
   })
 }
 
-export function changeEmail (oldEmail,password,newEmail) {
-  reauthenticate(oldEmail,password)
+export function changeEmail (password,newEmail) {
+  reauthenticate(password)
   updateEmail(auth.currentUser, newEmail).then(() => {
     logOut(auth);
   })
 }
 
-export function changePassword (email,oldPassword,newPassword) {
-  reauthenticate(email,oldPassword)
+export function changePassword (oldPassword,newPassword) {
+  reauthenticate(oldPassword)
   updatePassword(auth.currentUser,newPassword).then(() => {
     logOut(auth);
   })
+}
+
+export function deleteAccount (password) {
+  reauthenticate(password)
+  deleteUser(auth.currentUser);
 }
 
 
