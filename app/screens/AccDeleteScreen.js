@@ -25,6 +25,7 @@ function AccDeleteScreen(props) {
             <View style={styles.formContainer}>
                 <KeyboardAvoidingView 
                     behavior='position'
+                    keyboardVerticalOffset={Platform.OS == "ios" ? 70:0 }
                 >
                     <AppText style={styles.text}>
                         Confirm your informations

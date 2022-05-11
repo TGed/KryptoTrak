@@ -22,14 +22,14 @@ function MainScreen({}) {
     }
 
     const handleIncrement = () => {
-        setPage(page+1)
-        loadData()
+        const newPage = page+1;
+        setPage(newPage)
     }
 
     const handleDecrement = () => {
+        const newPage = page-1;
         if (page > 0) {
-            setPage(page-1);
-            loadData()
+            setPage(newPage);
         }
     }
 
@@ -37,7 +37,7 @@ function MainScreen({}) {
 
     useEffect(() => {
         loadData();
-    },[]);
+    },[page]);
 
 
 
@@ -51,7 +51,7 @@ function MainScreen({}) {
                 autoCorrect={false}
                 placeholder= "Search cryptocurrency"
                 onChangeText={(text) => setSearch(text)}
-                extraData={(coins.entries)}
+                extraData={coins}
             />
 
             <FlatList
@@ -71,7 +71,7 @@ function MainScreen({}) {
                     await loadData();
                     setRefreshing(false);
                 }}
-                extraData={coins.entries()}
+                extraData={coins}
             />
             <View style={styles.buttonsContainer}>
                 <View style={styles.previousButton}>
