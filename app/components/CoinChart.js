@@ -1,6 +1,6 @@
-import React, {Component, useEffect, useState} from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native'
-import { VictoryLine,VictoryChart, VictoryAxis } from "victory-native";
+import React, { useEffect, useState} from 'react';
+import { View, StyleSheet } from 'react-native'
+import { VictoryLine,VictoryChart } from "victory-native";
 
 
 function CoinChart({coinId}) {
