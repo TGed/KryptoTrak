@@ -21,7 +21,8 @@ function AppTextInput({icon, backgroundColor=defaultStyles.colors.light, width="
             )}
             <TextInput 
             placeholderTextColor={defaultStyles.colors.medium}
-            style={defaultStyles.text} 
+            style={[defaultStyles.text,
+            {width}]} 
             {...otherProps}
             />
         </View>

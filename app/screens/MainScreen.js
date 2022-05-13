@@ -51,7 +51,6 @@ function MainScreen({}) {
                 autoCorrect={false}
                 placeholder= "Search cryptocurrency"
                 onChangeText={(text) => setSearch(text)}
-                extraData={coins}
             />
 
             <FlatList
